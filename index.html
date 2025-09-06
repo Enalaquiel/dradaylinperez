@@ -1,186 +1,218 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV - Dra. Daylin del Valle Pérez Pérez</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Librerías para PDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <!-- Librería QR -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-  <style>
-    body {
-      font-family: 'Lato', sans-serif;
-    }
-    @media print {
-      .no-print { display: none; }
-      .print-container { box-shadow: none; margin: 0; max-width: 100%; border: none; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Dra. Daylin del Valle Pérez Pérez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Librería QR -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Estilos específicos para la impresión */
+        @media print {
+            @page {
+                size: letter; /* Define el tamaño del papel como Carta */
+                margin: 1.5cm;  /* Define los márgenes de la página */
+            }
+
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                background-color: #fff; /* Fondo blanco para impresión */
+                font-size: 10pt; /* Ajusta el tamaño de fuente para mejor encaje */
+            }
+            
+            .no-print {
+                display: none; /* Oculta los botones y elementos no deseados */
+            }
+
+            .print-container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                border: none !important;
+                border-radius: 0 !important;
+            }
+
+            .print-break-inside-avoid {
+                break-inside: avoid; /* Evita saltos de página dentro de secciones importantes */
+            }
+            
+            /* Asegura que los fondos de color se impriman */
+            .print-bg-color {
+                 background-color: #2d3748 !important;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-200 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-500">
+<body class="bg-slate-100 text-slate-800 dark:bg-gray-900 dark:text-slate-200 transition-colors duration-300">
 
-  <!-- Barra de acciones -->
-  <div class="no-print text-center py-6 bg-gray-300 dark:bg-gray-800 flex flex-wrap gap-4 justify-center">
-    <button onclick="window.print()" 
-      class="bg-teal-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-teal-800 transition-all duration-300">
-      🖨️ Imprimir
-    </button>
-    <button onclick="downloadPDF()" 
-      class="bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-indigo-800 transition-all duration-300">
-      📄 Descargar PDF
-    </button>
-    <button onclick="toggleDarkMode()" 
-      class="bg-gray-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-800 transition-all duration-300">
-      🌙 Modo Oscuro
-    </button>
-  </div>
-
-  <!-- Contenedor del CV -->
-  <main id="cv-content" class="print-container max-w-4xl mx-auto my-8 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-300 dark:border-gray-700">
-    <div class="p-10 md:p-12">
-      
-      <!-- Encabezado -->
-      <header class="text-center border-b-2 border-gray-300 dark:border-gray-700 pb-6 mb-8">
-        <h1 class="text-4xl md:text-5xl font-bold text-teal-800 dark:text-teal-400">Dra. Daylin del Valle Pérez Pérez</h1>
-        <h2 class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mt-2">Médico Especialista en Pediatría y Puericultura</h2>
-        <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400 mt-4">
-          <span>Perez.daylin@gmail.com</span>
-          <span>|</span>
-          <span>0412-9917318</span>
-          <span>|</span>
-          <span>Guarenas, Edo. Miranda</span>
-          <span>|</span>
-          <span>Instagram: @Dradaylinperez</span>
-        </div>
-        <!-- QR contacto -->
-        <div class="flex justify-center mt-6">
-          <div id="qrcode"></div>
-        </div>
-        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Escanea el QR para contactarme</p>
-      </header>
-
-      <!-- Secciones del CV -->
-      <div class="space-y-8">
-        
-        <!-- Perfil Profesional -->
-        <section>
-          <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">Perfil Profesional</h3>
-          <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-            Médico cirujano con especialización en pediatría y puericultura, comprometido con el bienestar integral de los niños y la promoción de su salud desde los primeros años. Con experiencia sólida en atención pediátrica en diferentes entornos hospitalarios, aporto habilidades clínicas y un enfoque humano para el cuidado infantil.
-          </p>
-        </section>
-
-        <!-- Experiencia Laboral -->
-        <section>
-          <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">Experiencia Profesional</h3>
-          <div class="space-y-6">
-            <div>
-              <p class="font-bold text-gray-500 dark:text-gray-400">Diciembre 2018 - Presente</p>
-              <h4 class="text-lg font-bold text-teal-700 dark:text-teal-400">Pediatra de Planta</h4>
-              <p class="text-md text-gray-600 dark:text-gray-300">Clínica Sanatrix, Campo Alegre</p>
-            </div>
-            <div>
-              <p class="font-bold text-gray-500 dark:text-gray-400">Marzo 2022 - Presente</p>
-              <h4 class="text-lg font-bold text-teal-700 dark:text-teal-400">Pediatra</h4>
-              <p class="text-md text-gray-600 dark:text-gray-300">Ministerio de Hábitat y Vivienda, Chacao</p>
-            </div>
-            <div>
-              <p class="font-bold text-gray-500 dark:text-gray-400">2018 - 2020</p>
-              <h4 class="text-lg font-bold text-teal-700 dark:text-teal-400">Pediatra</h4>
-              <p class="text-md text-gray-600 dark:text-gray-300">Salud Chacao, Chacao</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Educación -->
-        <section>
-          <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">Educación y Formación</h3>
-          <div class="space-y-6">
-            <div>
-              <p class="font-bold text-gray-500 dark:text-gray-400">Junio 2018</p>
-              <h4 class="text-lg font-bold text-teal-700 dark:text-teal-400">Especialista en Pediatría y Puericultura</h4>
-              <p class="text-md text-gray-600 dark:text-gray-300">Universidad Central de Venezuela (UCV), Caracas</p>
-            </div>
-            <div>
-              <p class="font-bold text-gray-500 dark:text-gray-400">Octubre 2012</p>
-              <h4 class="text-lg font-bold text-teal-700 dark:text-teal-400">Médico Cirujano</h4>
-              <p class="text-md text-gray-600 dark:text-gray-300">Universidad de Oriente (UDO), Bolívar</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- Cursos -->
-        <section>
-          <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">Cursos y Actualizaciones</h3>
-          <ul class="list-disc list-inside space-y-3 text-gray-600 dark:text-gray-300">
-            <li><b>Formación Interdisciplinaria en Alimentación y Nutrición al Niño y al Adolescente</b> - CANIA, Antimano (Agosto 2025 - Septiembre 2025)</li>
-            <li><b>Alimentación Complementaria & Baby Led Weaning</b> - CELACMA (Diciembre 2023 - Enero 2024)</li>
-            <li><b>Habilidades, técnicas de consejería</b> - UNICEF, Caracas (Septiembre 2020)</li>
-            <li><b>Actualización de Dermatitis Atópica</b> - Sociedad Venezolana de Pediatría y Puericultura, Caracas (Octubre 2015)</li>
-          </ul>
-        </section>
-
-        <!-- Competencias -->
-        <section>
-          <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">Competencias Clínicas</h3>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 text-gray-600 dark:text-gray-300">
-            <span>• Atención pediátrica</span>
-            <span>• Puericultura</span>
-            <span>• Diagnóstico clínico</span>
-            <span>• Manejo de emergencias</span>
-            <span>• Control de crecimiento</span>
-            <span>• Vacunación</span>
-            <span>• Interpretación de pruebas</span>
-            <span>• Educación en salud</span>
-            <span>• Asesoramiento nutricional</span>
-          </div>
-        </section>
-
-        <!-- Idiomas -->
-        <section>
-          <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-200 border-b border-gray-200 dark:border-gray-700 pb-2 mb-4">Idiomas</h3>
-          <p class="text-gray-600 dark:text-gray-300"><b>Español:</b> Nativo</p>
-        </section>
-
-      </div>
+    <!-- Barra de acciones -->
+    <div class="no-print text-center py-6 bg-slate-200 dark:bg-gray-800 flex flex-wrap gap-4 justify-center items-center">
+        <button onclick="window.print()" class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300">
+            🖨️ Imprimir o Guardar como PDF
+        </button>
+        <button onclick="toggleDarkMode()" class="bg-gray-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-gray-600 transition-all duration-300">
+            🌙 Modo Oscuro
+        </button>
     </div>
-  </main>
 
-  <script>
-    // PDF multipágina
-    async function downloadPDF() {
-      const { jsPDF } = window.jspdf;
-      const cvContent = document.getElementById("cv-content");
-      const canvas = await html2canvas(cvContent, { scale: 2 });
-      const imgData = canvas.toDataURL("image/png");
+    <!-- Contenedor del CV -->
+    <main id="cv-content" class="print-container max-w-4xl mx-auto my-8 bg-white dark:bg-slate-800 rounded-lg shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+        <div class="grid md:grid-cols-12">
+            
+            <!-- Columna Izquierda (Azul) -->
+            <aside class="md:col-span-4 bg-[#2d3748] text-white p-8 print-bg-color">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold text-white">Dra. Daylin del Valle Pérez Pérez</h1>
+                    <h2 class="text-lg text-blue-300 mt-1">PEDIATRA PUERICULTOR</h2>
+                </div>
+                
+                <!-- QR Contacto -->
+                <div class="flex flex-col items-center mb-8 print-break-inside-avoid">
+                    <div id="qrcode" class="p-2 bg-white rounded-md"></div>
+                    <p class="text-xs text-blue-200 mt-2">Escanea para contactar</p>
+                </div>
 
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-bold border-b-2 border-blue-400 pb-2 mb-4">Datos Personales</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 mr-3 mt-1 text-blue-300" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                <span>Perez.daylin@gmail.com</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-3 text-blue-300" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                                <span>0412-9917318</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 mr-3 mt-1 text-blue-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <span>Av principal Cloris, Ciudad Casarapa, ... Guarenas, Edo Miranda.</span>
+                            </li>
+                             <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-3 text-blue-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.058 1.644-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
+                                <span>@Dradaylinperez</span>
+                            </li>
+                        </ul>
+                    </div>
+                     <div class="print-break-inside-avoid">
+                        <h3 class="text-xl font-bold border-b-2 border-blue-400 pb-2 mb-4">Competencias</h3>
+                        <ul class="space-y-2 text-sm list-disc list-inside">
+                           <li>Atención pediátrica</li>
+                           <li>Puericultura</li>
+                           <li>Diagnóstico clínico</li>
+                           <li>Manejo de emergencias pediátricas</li>
+                           <li>Control de crecimiento y desarrollo</li>
+                           <li>Vacunación</li>
+                           <li>Interpretación de pruebas diagnósticas</li>
+                           <li>Educación en salud infantil</li>
+                           <li>Asesoramiento nutricional infantil</li>
+                           <li>Capacitación continua en pediatría</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 class="text-xl font-bold border-b-2 border-blue-400 pb-2 mb-4">Idiomas</h3>
+                        <p class="text-sm"><strong>Español:</strong> Nativo</p>
+                    </div>
+                </div>
+            </aside>
 
-      const imgProps = pdf.getImageProperties(imgData);
-      const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            <!-- Columna Derecha (Blanca) -->
+            <section class="md:col-span-8 p-8">
+                <div class="mb-8 print-break-inside-avoid">
+                    <h3 class="text-2xl font-bold text-slate-700 dark:text-slate-200 border-b-4 border-slate-200 dark:border-slate-600 pb-2 mb-4">Perfil Profesional</h3>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                        Médico cirujano con especialización en pediatría y puericultura, comprometido con el bienestar integral de los niños y la promoción de su salud desde los primeros años. Con experiencia sólida en atención pediátrica en diferentes entornos hospitalarios, aporto habilidades clínicas y un enfoque humano para el cuidado infantil.
+                    </p>
+                </div>
 
-      let heightLeft = imgHeight;
-      let position = 0;
+                <div class="mb-8 print-break-inside-avoid">
+                    <h3 class="text-2xl font-bold text-slate-700 dark:text-slate-200 border-b-4 border-slate-200 dark:border-slate-600 pb-2 mb-4">Experiencia Laboral</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Pediatra de planta</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">dic 2018 - presente</p>
+                            </div>
+                            <p class="text-md text-blue-600 dark:text-blue-400">Clínica Sanatrix, Campo alegre</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Pediatra</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">mar 2022 - presente</p>
+                            </div>
+                            <p class="text-md text-blue-600 dark:text-blue-400">Ministerio de Habita y Vivienda, Chacao</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Pediatra</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">2018 - 2020</p>
+                            </div>
+                            <p class="text-md text-blue-600 dark:text-blue-400">Salud chacao, Chacao</p>
+                        </div>
+                    </div>
+                </div>
 
-      pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
-      heightLeft -= pdfHeight;
+                <div class="print-break-inside-avoid">
+                    <h3 class="text-2xl font-bold text-slate-700 dark:text-slate-200 border-b-4 border-slate-200 dark:border-slate-600 pb-2 mb-4">Formación Académica y Cursos</h3>
+                    <div class="space-y-6">
+                         <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Formación Interdisciplinaria en Alimentación y Nutrición al Nino y al Adolescente</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">ago 2025 - sep 2025</p>
+                            </div>
+                            <p class="text-md text-blue-600 dark:text-blue-400">CANIA, Antimano</p>
+                        </div>
+                         <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Alimentación Complementaria & baby led weaning</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">dic 2023 - ene 2024</p>
+                            </div>
+                            <p class="text-md text-blue-600 dark:text-blue-400">CELACMA</p>
+                        </div>
+                         <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Habilidades, técnicas de consejería y metodología...</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">sep 2020</p>
+                            </div>
+                            <p class="text-md text-blue-600 dark:text-blue-400">UNICEF, Caracas</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Especialista en Pediatría y Puericultura</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">jun 2018</p>
+                            </div>
+                            <p class="text-md text-blue-600 dark:text-blue-400">Universidad Central de Venezuela (UCV), Caracas</p>
+                        </div>
+                         <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Actualización de Dermatitis Atópica</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">oct 2015</p>
+                            </div>
+                            <p class="text-md text-blue-600 dark:text-blue-400">Sociedad Venezolana de pediatría y Puericultura, Caracas</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Medico cirujano</h4>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">oct 2012</p>
+                            </div>
+                            <p class="text-md text-blue-600 dark:text-blue-400">Universidad de oriente (UDO), Bolivar</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight);
-        heightLeft -= pdfHeight;
-      }
-
-      pdf.save("CV_Daylin_Perez.pdf");
-    }
-
+ <script>
     // Dark mode toggle
     function toggleDarkMode() {
       document.documentElement.classList.toggle("dark");
@@ -188,10 +220,15 @@
 
     // QR con WhatsApp
     new QRCode(document.getElementById("qrcode"), {
-      text: "https://wa.me/584129917318",
-      width: 100,
-      height: 100
+      text: "https://wa.me/584129917318", // Reemplaza con tu número en formato internacional
+      width: 128,
+      height: 128,
+      colorDark : "#000000",
+      colorLight : "#ffffff",
+      correctLevel : QRCode.CorrectLevel.H
     });
-  </script>
+ </script>
+
 </body>
 </html>
+
