@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - Dra. Daylin del Valle Pérez Pérez</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Librería para generar PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+    }
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .no-print {
+        display: none;
+      }
+      .print-container {
+        box-shadow: none;
+        margin: 0;
+        max-width: 100%;
+        border: none;
+      }
+      .print-break-inside-avoid {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-200 text-gray-800">
+
+  <!-- Barra de acciones -->
+  <div class="no-print text-center py-6 bg-gray-300 flex flex-wrap gap-4 justify-center">
+    <button onclick="window.print()" 
+      class="bg-teal-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-teal-800 transition-all duration-300">
+      Imprimir
+    </button>
+    <button onclick="downloadPDF()" 
+      class="bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-indigo-800 transition-all duration-300">
+      Descargar PDF
+    </button>
+  </div>
+
+  <!-- Contenedor del CV -->
+  <main id="cv-content" class="print-container max-w-4xl mx-auto my-8 bg-white rounded-lg shadow-xl border border-gray-300">
+    <div class="p-10 md:p-12">
+      
+      <!-- Encabezado -->
+      <header class="text-center border-b-2 border-gray-300 pb-6 mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold text-teal-800">Dra. Daylin del Valle Pérez Pérez</h1>
+        <h2 class="text-xl md:text-2xl text-gray-600 mt-2">Médico Especialista en Pediatría y Puericultura</h2>
+        <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500 mt-4">
+          <span>Perez.daylin@gmail.com</span>
+          <span>|</span>
+          <span>0412-9917318</span>
+          <span>|</span>
+          <span>Guarenas, Edo. Miranda</span>
+          <span>|</span>
+          <span>Instagram: @Dradaylinperez</span>
+        </div>
+      </header>
+
+      <!-- Secciones del CV -->
+      <div class="space-y-8">
+        
+        <!-- Perfil Profesional -->
+        <section class="cv-section">
+          <h3 class="text-2xl font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">Perfil Profesional</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Médico cirujano con especialización en pediatría y puericultura, comprometido con el bienestar integral de los niños y la promoción de su salud desde los primeros años. Con experiencia sólida en atención pediátrica en diferentes entornos hospitalarios, aporto habilidades clínicas y un enfoque humano para el cuidado infantil.
+          </p>
+        </section>
+
+        <!-- Experiencia Laboral -->
+        <section class="cv-section print-break-inside-avoid">
+          <h3 class="text-2xl font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">Experiencia Profesional</h3>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-gray-500">Diciembre 2018 - Presente</p>
+              <h4 class="text-lg font-bold text-teal-700">Pediatra de Planta</h4>
+              <p class="text-md text-gray-600">Clínica Sanatrix, Campo Alegre</p>
+            </div>
+            <div>
+              <p class="font-bold text-gray-500">Marzo 2022 - Presente</p>
+              <h4 class="text-lg font-bold text-teal-700">Pediatra</h4>
+              <p class="text-md text-gray-600">Ministerio de Habita y Vivienda, Chacao</p>
+            </div>
+            <div>
+              <p class="font-bold text-gray-500">2018 - 2020</p>
+              <h4 class="text-lg font-bold text-teal-700">Pediatra</h4>
+              <p class="text-md text-gray-600">Salud Chacao, Chacao</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Educación -->
+        <section class="cv-section print-break-inside-avoid">
+          <h3 class="text-2xl font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">Educación y Formación</h3>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-gray-500">Junio 2018</p>
+              <h4 class="text-lg font-bold text-teal-700">Especialista en Pediatría y Puericultura</h4>
+              <p class="text-md text-gray-600">Universidad Central de Venezuela (UCV), Caracas</p>
+            </div>
+            <div>
+              <p class="font-bold text-gray-500">Octubre 2012</p>
+              <h4 class="text-lg font-bold text-teal-700">Médico Cirujano</h4>
+              <p class="text-md text-gray-600">Universidad de Oriente (UDO), Bolívar</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Cursos -->
+        <section class="cv-section print-break-inside-avoid">
+          <h3 class="text-2xl font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">Cursos y Actualizaciones</h3>
+          <ul class="list-disc list-inside space-y-3 text-gray-600">
+            <li><b>Formación Interdisciplinaria en Alimentación y Nutrición al Niño y al Adolescente</b> - CANIA, Antimano (Agosto 2025 - Septiembre 2025)</li>
+            <li><b>Alimentación Complementaria & Baby Led Weaning</b> - CELACMA (Diciembre 2023 - Enero 2024)</li>
+            <li><b>Habilidades, técnicas de consejería...</b> - UNICEF, Caracas (Septiembre 2020)</li>
+            <li><b>Actualización de Dermatitis Atópica</b> - Sociedad Venezolana de Pediatría y Puericultura, Caracas (Octubre 2015)</li>
+          </ul>
+        </section>
+
+        <!-- Competencias -->
+        <section class="cv-section print-break-inside-avoid">
+          <h3 class="text-2xl font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">Competencias Clínicas</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 text-gray-600">
+            <span>• Atención pediátrica</span>
+            <span>• Puericultura</span>
+            <span>• Diagnóstico clínico</span>
+            <span>• Manejo de emergencias</span>
+            <span>• Control de crecimiento</span>
+            <span>• Vacunación</span>
+            <span>• Interpretación de pruebas</span>
+            <span>• Educación en salud</span>
+            <span>• Asesoramiento nutricional</span>
+          </div>
+        </section>
+
+        <!-- Idiomas -->
+        <section class="cv-section">
+          <h3 class="text-2xl font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">Idiomas</h3>
+          <p class="text-gray-600"><b>Español:</b> Nativo</p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const cvContent = document.getElementById("cv-content");
+
+      const canvas = await html2canvas(cvContent, { scale: 2 });
+      const imgData = canvas.toDataURL("image/png");
+
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("CV_Daylin_Perez.pdf");
+    }
+  </script>
+</body>
+</html>
