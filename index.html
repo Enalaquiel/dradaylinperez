@@ -15,52 +15,69 @@
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
         }
-
-        /* Estilos específicos para la impresión */
+        /* Estilos para impresión */
         @media print {
+            html, body {
+                height: auto;
+                background: #fff !important;
+                color: #222 !important;
+                font-size: 10pt !important;
+            }
             @page {
-                size: letter; /* Define el tamaño del papel como Carta */
-                margin: 1.5cm;  /* Define los márgenes de la página */
+                size: A4;
+                margin: 1.5cm;
             }
-
-            body {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                background-color: #fff; /* Fondo blanco para impresión */
-                font-size: 10pt; /* Ajusta el tamaño de fuente para mejor encaje */
-            }
-            
             .no-print {
-                display: none; /* Oculta los botones y elementos no deseados */
+                display: none !important;
             }
-
             .print-container {
                 box-shadow: none !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                max-width: 100% !important;
-                width: 100% !important;
                 border: none !important;
                 border-radius: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
             }
-
             .print-break-inside-avoid {
-                break-inside: avoid; /* Evita saltos de página dentro de secciones importantes */
+                break-inside: avoid;
             }
-            
-            /* Asegura que los fondos de color se impriman */
             .print-bg-color {
-                 background-color: #6d28d9 !important; /* Corresponde a violet-700 */
+                background-color: #6d28d9 !important;
+                color: #fff !important;
             }
+            .border-violet-100,
+            .border-violet-200,
+            .border-violet-400 {
+                border-color: #6d28d9 !important;
+            }
+            .bg-violet-700 {
+                background-color: #6d28d9 !important;
+                color: #fff !important;
+            }
+            .text-violet-800, .text-violet-200, .text-violet-300, .text-violet-400, .text-violet-600, .text-violet-700 {
+                color: #6d28d9 !important;
+            }
+            .bg-white {
+                background: #fff !important;
+            }
+            .text-slate-800, .text-slate-700, .text-slate-600, .text-slate-500 {
+                color: #222 !important;
+            }
+            a[href]:after {
+                content: none !important;
+            }
+            /* Oculta scrollbars */
+            ::-webkit-scrollbar { display: none; }
         }
     </style>
 </head>
 <body class="bg-violet-50 text-slate-800">
 
-    <!-- Barra de acciones -->
+    <!-- Barra de acciones (solo pantalla) -->
     <div class="no-print text-center py-6 bg-violet-100">
         <button onclick="window.print()" class="bg-violet-600 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-violet-700 transition-all duration-300">
-            🖨️ Imprimir o Guardar como PDF
+            🖨️ Imprimir o Descargar PDF
         </button>
     </div>
 
@@ -80,19 +97,19 @@
                         <h3 class="text-xl font-bold border-b-2 border-violet-400 pb-2 mb-4">Datos Personales</h3>
                         <ul class="space-y-3 text-sm">
                             <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-3 mt-1 text-violet-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                <svg class="w-5 h-5 mr-3 mt-1 text-violet-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path></svg>
                                 <span>Perez.daylin@gmail.com</span>
                             </li>
                             <li class="flex items-center">
-                                <svg class="w-5 h-5 mr-3 text-violet-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                                <svg class="w-5 h-5 mr-3 text-violet-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54.977v5.852a1 1 0 01-1 1H3a1 1 0 01-1-1V3z"></path></svg>
                                 <span>0412-9917318</span>
                             </li>
                             <li class="flex items-start">
-                                <svg class="w-5 h-5 mr-3 mt-1 text-violet-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <svg class="w-5 h-5 mr-3 mt-1 text-violet-300 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9z" clip-rule="evenodd"></path></svg>
                                 <span>Guarenas, Edo Miranda.</span>
                             </li>
                              <li class="flex items-center">
-                                <svg class="w-5 h-5 mr-3 text-violet-300 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.058 1.644-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
+                                <svg class="w-5 h-5 mr-3 text-violet-300 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.333 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.333-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.062-1.366.333-2.633 1.308-3.608C4.516 2.566 5.783 2.295 7.15 2.233 8.416 2.175 8.796 2.163 12 2.163zm0 1.837c-3.162 0-3.544.013-4.797.07-1.11.051-1.785.228-2.294.737-.509.509-.686 1.184-.737 2.294-.057 1.253-.07 1.635-.07 4.797s.013 3.544.07 4.797c.051 1.11.228 1.785.737 2.294.509.509 1.184.686 2.294.737 1.253.057 1.635.07 4.797.07s3.544-.013 4.797-.07c1.11-.051 1.785-.228 2.294-.737.509-.509.686-1.184.737-2.294.057-1.253.07-1.635.07-4.797s-.013-3.544-.07-4.797c-.051-1.11-.228-1.785-.737-2.294-.509-.509-1.184-.686-2.294-.737-1.253-.057-1.635-.07-4.797-.07z"></path></svg>
                                 <span>@Dradaylinperez</span>
                             </li>
                         </ul>
@@ -123,7 +140,7 @@
                 <div class="mb-8 print-break-inside-avoid">
                     <h3 class="text-3xl font-bold text-slate-700 border-b-2 border-violet-200 pb-3 mb-4">Perfil Profesional</h3>
                     <p class="text-slate-600 leading-relaxed text-justify">
-                        Médico cirujano con especialización en pediatría y puericultura, comprometido con el bienestar integral de los niños y la promoción de su salud desde los primeros años. Con experiencia sólida en atención pediátrica en diferentes entornos hospitalarios, aporto habilidades clínicas y un enfoque humano para el cuidado infantil.
+                        Médico cirujano con especialización en pediatría y puericultura, comprometido con el bienestar integral de los niños y la promoción de su salud desde los primeros años. Capacidad para diagnóstico clínico, manejo de emergencias, control de crecimiento y educación en salud infantil.
                     </p>
                 </div>
 
@@ -190,8 +207,5 @@
             </section>
         </div>
     </main>
-
 </body>
 </html>
-
-
